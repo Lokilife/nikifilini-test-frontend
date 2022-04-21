@@ -15,7 +15,9 @@ const OrdersShow = observer(
     return (
       <div className={styles.screenWrapper}>
         <div className={styles.screen}>
-          <div className={styles.items}></div>
+          <div className={styles.items}>
+            123
+          </div>
         </div>
       </div>
     );

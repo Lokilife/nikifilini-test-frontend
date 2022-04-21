@@ -11,8 +11,8 @@ interface StatusProps {
 const OrderStatus = observer(
   ({ code }: StatusProps): JSX.Element => {
     const globalState = useGlobalState();
-    const name = find(globalState.orderStatuses, { code })?.name || code;
-
+    const name = find(Array.from(globalState.orderStatuses), { code })?.name || code;
+    
     let color: "blue" | "grey" | "green";
     switch (code) {
       case "podtverj":

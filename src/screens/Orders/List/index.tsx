@@ -17,6 +17,18 @@ const OrdersList = observer(
     useEffect(() => {
       if (state.initialized) return;
       state.initialize();
+      
+      // Fake data
+      // state.setOrders([{
+      //   createdAt: '01.12.2022',
+      //   id: 1,
+      //   number: 1,
+      //   site: 'demo-magaz',
+      //   status: 'new',
+      //   delivery: {
+      //     code: 'russian-post'
+      //   }
+      // }]);
     });
 
     return (
@@ -26,9 +38,10 @@ const OrdersList = observer(
             {state.loading && <span>Loading...</span>}
             {!state.loading && (
               <div className={styles.table}>
-                <div className={styles.head}>
+                <div>
+                {/* <div className={styles.head}> */}
                   <div className={styles.row}>
-                    <div>Номер</div>
+                    <div>№</div>
                     <div>Создан</div>
                     <div>Доставка</div>
                     <div>В работе</div>
@@ -42,7 +55,9 @@ const OrdersList = observer(
                 </div>
               </div>
             )}
-            <div className={styles.pagination}>
+            <div>
+            {/* <div className={styles.pagination}> */}
+              Страница {state.page}/{state.totalPages}
               <Button
                 small
                 text="PREV"

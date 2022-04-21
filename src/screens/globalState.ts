@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import client from "api/gql";
+import client from "../api/gql";
 import {
   DELIVERY_TYPES_QUERY,
   ORDER_STATUSES_QUERY,
@@ -35,14 +35,7 @@ export class GlobalState {
     makeAutoObservable(this);
   }
 
-  get orderStatuses() {
-    if (this.status.orderStatuses === null) {
-    }
-    return this.data.orderStatuses;
-  }
-
   setOrderStatuses(statuses: CrmType[]) {
-    console.log(statuses);
     this.data.orderStatuses = statuses;
     this.status.orderStatuses = true;
   }
@@ -56,15 +49,30 @@ export class GlobalState {
     this.data.deliveryTypes = statuses;
     this.status.deliveryTypes = true;
   }
+  
+  get orderStatuses() {
+    if (this.status.orderStatuses === null) {
+      client.query(ORDER_STATUSES_QUERY)
+        .toPromise()
+        .then(res => this.setOrderStatuses(res.data.orderStatuses))
+    }
+    return this.data.orderStatuses;
+  }
 
   get productStatuses() {
     if (this.status.productStatuses === null) {
+      client.query(PRODUCT_STATUSES_QUERY)
+        .toPromise()
+        .then(res => this.setProductStatuses(res.data.productStatuses))
     }
     return this.data.productStatuses;
   }
 
   get deliveryTypes() {
     if (this.status.deliveryTypes === null) {
+      client.query(DELIVERY_TYPES_QUERY)
+        .toPromise()
+        .then(res => this.setDeliveryTypes(res.data.deliveryTypes))
     }
     return this.data.deliveryTypes;
   }

@@ -1,4 +1,25 @@
 @import '../../../common.styl'
 
+.screenWrapper
+  display border-box
+  // margin 10vw
+
 .screen
   background white
+  height 100%
+  width 100%
+  padding-inline 5vw
+  padding-block 2.5vw
+
+.table
+  border black solid 0.1vw
+  border-radius 5px
+  padding-inline 1vw
+
+.row
+  display grid
+  grid-template-columns 1fr 5fr 6fr 3fr 4fr
+  grid-column-gap 2vw
+
+.body
+  display block

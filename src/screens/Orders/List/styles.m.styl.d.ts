@@ -1,6 +1,10 @@
 declare namespace StylesMStylNamespace {
   export interface IStylesMStyl {
+    body: string;
+    row: string;
     screen: string;
+    screenWrapper: string;
+    table: string;
   }
 }
 
