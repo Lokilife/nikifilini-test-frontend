@@ -57,7 +57,6 @@ export default class OrdersListState {
   }
 
   setTotalPages(totalPages: number): void {
-    console.log(totalPages)
     this.totalPages = totalPages;
   }
 
@@ -71,15 +70,26 @@ export default class OrdersListState {
 
   async loadOrders() {
     this.loading = true;
-    const orders = await (await client.query(GET_ORDERS_QUERY).toPromise()).data;
-    this.setOrders(orders.getOrders.orders);
-    this.setTotalPages(orders.getOrders.pagination.totalPageCount);
+
+    const ordersResponse = (await client.query(GET_ORDERS_QUERY, { page: this.page }).toPromise()).data;
+
+    this.setOrders(ordersResponse.getOrders.orders);
+    this.setTotalPages(ordersResponse.getOrders.pagination.totalPageCount);
+
     this.loading = false;
   }
 
   initialize() {
     if (this.initialized) return;
     this.initialized = true;
+
+    const url = new URL(window.location.href);
+    let page = url.searchParams.get('page');
+
+    if (!page || isNaN(+page)) page = '1';
+    
+    this.setPage(+page);
+    
     this.loadOrders();
   }
 }

@@ -3,6 +3,8 @@ declare namespace StylesMStylNamespace {
     items: string;
     screen: string;
     screenWrapper: string;
+    status: string;
+    statusTag: string;
   }
 }
 
