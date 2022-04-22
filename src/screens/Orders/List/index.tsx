@@ -26,8 +26,7 @@ const OrdersList = observer(
             {state.loading && <span>Loading...</span>}
             {!state.loading && (
               <div className={styles.table}>
-                <div>
-                {/* <div className={styles.head}> */}
+                <div className={styles.head}>
                   <div className={styles.row}>
                     <div>№</div>
                     <div>Создан</div>

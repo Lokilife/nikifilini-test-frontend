@@ -1,19 +1,27 @@
 @import '../../../../../common.styl'
 
 .row
-  min-height 64px
-  display grid
-  grid-template-columns 1fr 5fr 6fr 3fr 4fr
+  min-height 32px
+  padding-block 8px
+  border-bottom #F5F5FA solid 2px
+  display flex
+  align-items center
+  gap 1vw
 
-  div
-    display flex
-    align-items center
+.row > div:nth-child(1)
+  width 5vw
 
-    div
-      width 80%
+.row > div:nth-child(2)
+  width 14vw
 
-    &:last-child div
-      width 100%
+.row > div:nth-child(3)
+  width 16vw
+
+.row > div:nth-child(4)
+  width 10vw
+
+.row > div:nth-child(5)
+  width 16vw
 
 .orderNumber
   font-weight 500
